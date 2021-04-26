@@ -16,3 +16,32 @@
         <input type="submit" value="delete" class="btn btn-danger d-flex"/>
     </form>
 </div>
+<div class="bg-secondary p-3">
+    <?php if($comments): ?>
+        <?php foreach($comments as $comment): ?>
+            <div class="my-2">
+                <h6 class="text-capitalize lead"><?= $comment['body'] ?> :[by <strong class="text-uppercase "><?= $comment['name'] ?></strong>]</h6>
+            </div>  
+        <?php endforeach; ?>
+    <?php else : ?>
+        <p> No comments To display </p>
+    <?php endif; ?>
+</div>
+<h3>Add comments </h3>
+<?php echo validation_errors() ?>
+<?php echo form_open('comments/create/'.$post['id']); ?>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label for="body">Body</label>
+        <textarea name="body" class="form-control"></textarea>
+    </div>
+    <input type="hidden" name="slug" value="<?= $post['slug'] ?>"/>
+    <button class="btn btn-success" type="submit">submit</button>
+</form>
