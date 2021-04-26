@@ -2,6 +2,7 @@
     position: relative;
 }
 .create-section{
+    z-index:2;
     padding:8px;
     background-color:black;
     position:absolute;
