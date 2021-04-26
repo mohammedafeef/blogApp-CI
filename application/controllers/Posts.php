@@ -20,6 +20,9 @@
             $this->load->view('templates/footer');            
         }
         public function create(){
+            if(!$this->session->userdata('loggedin')){
+                redirect('user/login');
+            }
             $data['tittle'] = 'create post';
             $data['categories'] = $this->post_model->get_categories();
             $this->form_validation->set_rules('tittle',"Tittle","required");
@@ -47,15 +50,26 @@
 				}
 
 				$this->post_model->set_post($post_image);
+                $this->session->set_flashdata('post_created',"post has been created");
                 redirect('posts');
             }
         }
         public function delete($id){
+            if(!$this->session->userdata('loggedin')){
+                redirect('user/login');
+            }
             $this->post_model->delete_post($id);
+            $this->session->set_flashdata('post_deleted',"post has been deleted");
             redirect('posts');
         }
         public function edit($slug){
+            if(!$this->session->userdata('loggedin')){
+                redirect('user/login');
+            }
             $data['post'] = $this->post_model->get_posts(urldecode($slug));
+            if($this->session->usedata('user_id') != $data['post']['user_id']){
+                redirect('posts');
+            }
             $data['categories'] = $this->post_model->get_categories();
             if(empty($data['post'])){
                 show_404();
@@ -66,7 +80,11 @@
             $this->load->view('templates/footer'); 
         }
         public function update(){
+            if(!$this->session->userdata('loggedin')){
+                redirect('user/login');
+            }
             $this->post_model->update_post();
+            $this->session->set_flashdata('post_updated',"post has been updated succssefully");
             redirect('posts');
         }
 

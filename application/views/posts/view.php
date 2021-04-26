@@ -8,6 +8,7 @@
     <p><?php echo $post['body'];?></p>
     </div>
 </div>
+<?php if($this->session->userdata('user_id')==$post['id']): ?>
 <div class="d-flex justify-content-between">
     <div>
         <a href="<?php echo base_url(); ?>posts/edit/<?php echo $post['slug'] ?>" class="btn btn-warning pull-left">Edit</a>
@@ -16,6 +17,7 @@
         <input type="submit" value="delete" class="btn btn-danger d-flex"/>
     </form>
 </div>
+<?php endif; ?>
 <div class="bg-secondary p-3">
     <?php if($comments): ?>
         <?php foreach($comments as $comment): ?>

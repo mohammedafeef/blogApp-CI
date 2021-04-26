@@ -15,16 +15,60 @@
                     <li class="nav-item mx-3"><a href="<?php echo base_url(); ?>/" class="nav-link">HOME</a></li>
                     <li class="nav-item mx-3"><a href="<?php echo base_url(); ?>posts" class="nav-link">POSTS</a></li>
                     <li class="nav-item mx-3"><a href="<?php echo base_url(); ?>categories" class="nav-link">CATEGORIES</a></li>
+                    <li class="nav-item mx-3"><a href="<?php echo base_url(); ?>about" class="nav-link">ABOUT</a></li>
+                    <?php if(!$this->session->userdata('logged_in')): ?>
+                    <li class="nav-item mx-3"><a href="<?php echo base_url(); ?>users/register" class="nav-link">SIGN-UP</a></li>
+                    <li class="nav-item mx-3"><a href="<?php echo base_url(); ?>users/login" class="nav-link">LOG-IN</a></li>
+                    <?php endif; ?>
+                    <?php if($this->session->userdata('logged_in')): ?>
                     <li class="nav-item create-toggler">
                         <a class="nav-link">CREATE</a>
                         <div class="create-section">
                         <a class="nav-link" href="<?php echo base_url(); ?>posts/create">POST</a>
                         <a class="nav-link" href="<?php echo base_url(); ?>categories/create">CATEGORY</a>
                         </div>
-                    <li class="nav-item mx-3"><a href="<?php echo base_url(); ?>about" class="nav-link">ABOUT</a></li>
+                    </li>
+                    <li class="nav-item mx-3"><a href="<?php echo base_url(); ?>users/logout" class="nav-link">LOGOUT</a></li>
+                    <?php endif; ?>
                 </ul>
             </div>
 
         </div>
     </nav>
     <div class="container">
+    <!-- flash msg -->
+        <?php if($this->session->flashdata('user_registered')): ?>
+            <p class='alert alert-success'>
+            <?php echo $this->session->
+            flashdata('user_registered');unset($_SESSION['user_registered']); ?></p>
+        <?php endif; ?>
+        <?php if($this->session->flashdata('post_created')): ?>
+            <p class='alert alert-success'>
+            <?php echo $this->session->
+            flashdata('post_created');unset($_SESSION['post_created']); ?></p>
+        <?php endif; ?>
+        <?php if($this->session->flashdata('post_updated')): ?>
+            <p class='alert alert-success'>
+            <?php echo $this->session->
+            flashdata('post_updated');unset($_SESSION['post_updated']); ?></p>
+        <?php endif; ?>
+        <?php if($this->session->flashdata('post_deleted')): ?>
+            <p class='alert alert-success'>
+            <?php echo $this->session->
+            flashdata('post_deleted');unset($_SESSION['post_deleted']); ?></p>
+        <?php endif; ?>
+        <?php if($this->session->flashdata('user_login')): ?>
+            <p class='alert alert-success'>
+            <?php echo $this->session->
+            flashdata('user_login');unset($_SESSION['user_login']); ?></p>
+        <?php endif; ?>
+        <?php if($this->session->flashdata('user_login_failed')): ?>
+            <p class='alert alert-success'>
+            <?php echo $this->session->
+            flashdata('user_login_failed');unset($_SESSION['user_login_failed']); ?></p>
+        <?php endif; ?>
+        <?php if($this->session->flashdata('user_logedout')): ?>
+            <p class='alert alert-success'>
+            <?php echo $this->session->
+            flashdata('user_logedout');unset($_SESSION['user_logedout']); ?></p>
+        <?php endif; ?>

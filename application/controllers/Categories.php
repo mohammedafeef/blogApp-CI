@@ -8,6 +8,9 @@
             $this->load->view('templates/footer');
         }
         public function create(){
+            if(!$this->session->userdata('loggedin')){
+                redirect('user/login');
+            }
             $data['tittle'] = 'Create category';
             $this->form_validation->set_rules('name','Name','required');
             if($this->form_validation->run() === FALSE){

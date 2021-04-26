@@ -26,6 +26,7 @@
                 'slug' => $slug,
                 'body' => $this->input->post('body'),
                 "category_id" => $this->input->post('category_id'),
+                'user_id' => $this->session->userdata('user_id'),
                 'image' => $post_image
             );
             return $this->db->insert('posts',$data);
