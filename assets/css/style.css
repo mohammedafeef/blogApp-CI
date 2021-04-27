@@ -44,8 +44,21 @@ a.pagination-link:hover{
 }
 .category-dlt{
     display:inline;
+    position: relative;
+    top:-.2rem;
+    right:-18rem;
+    background-color:white;
+    border-radius:50%;
 }
 .category-dlt input[type="submit"]{
     background-color:transparent;
     border:none;
+    color:black;
+    text-decoration:none;
+}
+.vertically-cnt{
+    margin-top:15rem;
+}
+.btn-box{
+    position:relative;
 }

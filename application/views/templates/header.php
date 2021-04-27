@@ -15,7 +15,6 @@
                     <li class="nav-item mx-3"><a href="<?php echo base_url(); ?>/" class="nav-link">HOME</a></li>
                     <li class="nav-item mx-3"><a href="<?php echo base_url(); ?>posts" class="nav-link">POSTS</a></li>
                     <li class="nav-item mx-3"><a href="<?php echo base_url(); ?>categories" class="nav-link">CATEGORIES</a></li>
-                    <li class="nav-item mx-3"><a href="<?php echo base_url(); ?>about" class="nav-link">ABOUT</a></li>
                     <?php if(!$this->session->userdata('logged_in')): ?>
                     <li class="nav-item mx-3"><a href="<?php echo base_url(); ?>users/register" class="nav-link">SIGN-UP</a></li>
                     <li class="nav-item mx-3"><a href="<?php echo base_url(); ?>users/login" class="nav-link">LOG-IN</a></li>
