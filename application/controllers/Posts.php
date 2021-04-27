@@ -1,8 +1,16 @@
 <?php
     class Posts extends CI_Controller{
-        public function index(){
+        public function index($offset = 0){
+            $config['base_url'] = base_url().'posts/index/';
+            $config['total_rows'] = $this->db->count_all('posts');
+            $config['per_page'] = 3;
+            $config['url_segment'] = 3;
+            $config['attributes'] = array('class'=>'pagination-link');
+
+            $this->pagination->initialize($config);
+
             $data['tittle'] = 'Latest Posts';
-            $data['posts'] = $this->post_model->get_posts();
+            $data['posts'] = $this->post_model->get_posts(FALSE,$config['per_page'],$offset);
             $this->load->view('templates/header');
             $this->load->view('posts/index',$data);
             $this->load->view('templates/footer');
@@ -20,7 +28,7 @@
             $this->load->view('templates/footer');            
         }
         public function create(){
-            if(!$this->session->userdata('loggedin')){
+            if(!$this->session->userdata('logged_in')){
                 redirect('user/login');
             }
             $data['tittle'] = 'create post';
@@ -55,7 +63,7 @@
             }
         }
         public function delete($id){
-            if(!$this->session->userdata('loggedin')){
+            if(!$this->session->userdata('logged_in')){
                 redirect('user/login');
             }
             $this->post_model->delete_post($id);
@@ -63,7 +71,7 @@
             redirect('posts');
         }
         public function edit($slug){
-            if(!$this->session->userdata('loggedin')){
+            if(!$this->session->userdata('logged_in')){
                 redirect('user/login');
             }
             $data['post'] = $this->post_model->get_posts(urldecode($slug));

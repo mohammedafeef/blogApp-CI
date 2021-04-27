@@ -5,9 +5,15 @@
         }
         public function set_category(){
             $data = array(
-                'name'=>$this->input->post('name')
+                'name'=>$this->input->post('name'),
+                'user_id' =>$this->session->userdata('user_id')
             );
             return $this->db->insert('categories',$data);
+        }
+        public function delete_category($id){
+            $this->db->where('id',$id);
+            $this->db->delete('categories');
+            return TRUE;
         }
         public function get_categories(){
             $this->db->order_by('name');

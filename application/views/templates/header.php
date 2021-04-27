@@ -72,3 +72,8 @@
             <?php echo $this->session->
             flashdata('user_logedout');unset($_SESSION['user_logedout']); ?></p>
         <?php endif; ?>
+        <?php if($this->session->flashdata('category_deleted')): ?>
+            <p class='alert alert-success'>
+            <?php echo $this->session->
+            flashdata('category_deleted');unset($_SESSION['category_deleted']); ?></p>
+        <?php endif; ?>

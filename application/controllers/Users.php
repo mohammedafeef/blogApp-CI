@@ -37,8 +37,9 @@
                 if($user_id){
                     $user_data = array(
                         'user_id'=>$user_id,
-                        'username'=>$username,
-                        'logged_in'=>true
+                        'logged_in'=>TRUE,
+                        'username'=>$username
+                        
                     );
                     $this->session->set_userdata($user_data);
                     $this->session->set_flashdata('user_login',"You are currently loged in");
